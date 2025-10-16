@@ -1,7 +1,8 @@
 # 💰 Fund Verse - Fund Management System
 
 <div align="center">
-  <img src="app_icon.png" alt="Fund Verse Logo" width="120"/>
+  <img src="https://raw.githubusercontent.com/Sugamshaw/Fundverseappcode/master/app/src/main/res/drawable/app_logo.png" alt="Fund Verse Logo" width="240"/>
+
   
   [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://www.android.com/)
   [![Kotlin](https://img.shields.io/badge/Language-Kotlin-blue.svg)](https://kotlinlang.org/)
