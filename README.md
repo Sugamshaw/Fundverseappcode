@@ -1,3 +1,32 @@
+<!--This is a persistent cache issue. The Kotlin plugin is being registered twice somewhere in your Gradle configuration. Let's do a complete nuclear cleanup: 
+Step 1: Close Android Studio Completely
+Step 2: Manual Cleanup (Very Important!)
+Navigate to your project folder and delete these:
+
+In project root (C:\Users\SUGAM SHAW\AndroidStudioProjects\Fundbank\):
+
+Delete .gradle folder
+Delete .idea folder
+Delete build folder
+Delete app/build folder
+Delete local.properties file
+
+
+In Gradle home (C:\Users\SUGAM SHAW\.gradle\):
+
+Delete caches folder
+Delete daemon folder
+
+
+Optional but recommended - Delete Android Studio cache:
+
+C:\Users\SUGAM SHAW\AppData\Local\Google\AndroidStudio2025.2.1 * (or wherever your AS cache is)
+Look for caches folder and delete it
+
+Application Received
+
+Step 3: Verify Your Files Are Clean
+-->
 # 💰 Fund Verse - Fund Management System
 
 <div align="center">
@@ -9,7 +38,7 @@
   [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg)](https://android-arsenal.com/api?level=24)
   [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 </div>
-
+-->
 ## 📖 Overview
 
 **Fund Verse** is a comprehensive Android application designed for efficient fund management. It provides a complete solution for managing legal entities, management entities, funds, sub-funds, and share classes with an intuitive and modern user interface.
