@@ -16,9 +16,11 @@
         android:theme="@style/Theme.FundBank"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".SettingsActivity"
+            android:name=".AIInsightsActivity"
             android:exported="false" />
-        <!-- Splash Activity -->
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" /> <!-- Splash Activity -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">

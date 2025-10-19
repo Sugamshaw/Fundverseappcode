@@ -5,6 +5,75 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
+    /**
+     * 🤖 AI/ML ENDPOINTS
+     */
+
+    /**
+     * Get NAV prediction for a single fund
+     * @param fundId The fund identifier (e.g., "F000001")
+     * Returns predicted NAV, current NAV, change percentage, and confidence
+     */
+    @GET("ai/predict-nav/{fundId}")
+    suspend fun getNAVPrediction(@Path("fundId") fundId: String): NAVPrediction
+
+
+    /**
+     * Get AI Performance Statistics
+     */
+    @GET("ai/stats")
+    suspend fun getPerformanceStats(): PerformanceStats
+
+    /**
+     * Get AI-powered fund recommendations
+     */
+    @GET("ai/recommendations")
+    suspend fun getAIRecommendations(
+        @Query("top_n") topN: Int = 10
+    ): List<AIRecommendation>
+
+    /**
+     * Predict NAV for a specific fund
+     */
+    @GET("ai/predict-nav/{fund_id}")
+    suspend fun predictNAV(
+        @Path("fund_id") fundId: String
+    ): NAVPrediction
+
+    /**
+     * Get NAV predictions for all funds
+     */
+    @GET("ai/predict-nav-all")
+    suspend fun getAllNAVPredictions(): List<NAVPrediction>
+
+    /**
+     * Classify fund performance
+     */
+    @GET("ai/classify/{fund_id}")
+    suspend fun classifyPerformance(
+        @Path("fund_id") fundId: String
+    ): PerformanceClassification
+
+    /**
+     * Get risk assessment overview
+     */
+    @GET("ai/risk-assessment")
+    suspend fun getRiskAnalysis(): RiskAssessment
+
+    /**
+     * Get risk details for a specific fund
+     */
+    @GET("ai/risk-assessment/{fund_id}")
+    suspend fun getFundRiskDetail(
+        @Path("fund_id") fundId: String
+    ): FundRiskDetail
+
+    /**
+     * Get feature importance (what drives predictions)
+     */
+    @GET("ai/feature-importance")
+    suspend fun getFeatureImportance(): Map<String, Double>
+
     @GET("legal_entities")
     suspend fun getLegalEntities(): Response<List<LegalEntity>>
 

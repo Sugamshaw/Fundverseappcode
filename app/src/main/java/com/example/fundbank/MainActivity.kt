@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import charts.ChartActivity
 import com.example.fundbank.databinding.ActivityMainBinding
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import fragments.FundsFragment
 import fragments.LegalEntitiesFragment
 import fragments.ManagementEntitiesFragment
@@ -31,12 +34,63 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = "Fund Management System"
 
+        val pulse = AnimationUtils.loadAnimation(this, R.anim.fab_pulse)
+        binding.fabAiInsights.startAnimation(pulse)
+
         setupBottomNavigation()
+        setupAIButton()
 
         // Load initial fragment
         if (savedInstanceState == null) {
             loadFragment(LegalEntitiesFragment(), "legal")
         }
+    }
+
+    /**
+     * 🤖 Setup AI Insights Button
+     */
+    private fun setupAIButton() {
+        binding.fabAiInsights.setOnClickListener {
+            // Animate button
+            it.animate()
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(100)
+                .withEndAction {
+                    it.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(100)
+                        .start()
+
+                    // Open AI Insights Activity
+                    openAIInsights()
+                }
+                .start()
+        }
+
+        // Optional: Show tooltip on long press
+        binding.fabAiInsights.setOnLongClickListener {
+            Snackbar.make(
+                binding.root,
+                "🤖 AI-powered predictions, recommendations & risk analysis",
+                Snackbar.LENGTH_SHORT
+            ).show()
+            true
+        }
+    }
+
+    /**
+     * Open AI Insights Dashboard
+     */
+    private fun openAIInsights() {
+        val intent = Intent(this, AIInsightsActivity::class.java)
+        startActivity(intent)
+        // Add smooth transition animation
+        overridePendingTransition(
+            android.R.anim.slide_in_left,
+            android.R.anim.slide_out_right
+        )
     }
 
     private fun setupBottomNavigation() {
@@ -71,6 +125,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun updateTitle(title: String) {
         binding.toolbarTitle.animate()
             .alpha(0f)
@@ -84,6 +139,7 @@ class MainActivity : AppCompatActivity() {
             }
             .start()
     }
+
     private fun loadFragment(fragment: Fragment, tag: String) {
         currentFragment = tag
         supportFragmentManager.beginTransaction()
@@ -116,46 +172,7 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-    // In MainActivity.kt, update the logout function in SettingsActivity navigation:
 
-//    private fun logout() {
-//        // Sign out from Firebase
-//        auth.signOut()
-//
-//        // Clear login state
-//        val sharedPref = getSharedPreferences("FundBankPrefs", MODE_PRIVATE)
-//        sharedPref.edit().apply {
-//            putBoolean("isLoggedIn", false)
-//            apply()
-//        }
-//
-//        // Navigate to Login
-//        val intent = Intent(this, LoginActivity::class.java)
-//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        startActivity(intent)
-//        finish()
-//    }
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.main_menu, menu)
-//        return true
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.action_charts -> {
-//                startActivity(Intent(this, ChartActivity::class.java))
-//                true
-//            }
-//            R.id.action_refresh -> {
-//                val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
-//                if (fragment is RefreshableFragment) {
-//                    fragment.refresh()
-//                }
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
     fun openFragmentFromChild(tag: String, bundle: Bundle? = null) {
         val fragment: Fragment = when (tag) {
             "management" -> ManagementEntitiesFragment()
@@ -184,7 +201,6 @@ class MainActivity : AppCompatActivity() {
             .addToBackStack(null)
             .commit()
     }
-
 }
 
 interface RefreshableFragment {

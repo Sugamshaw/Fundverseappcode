@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 💜 AI THEME COLORS -->
+    <color name="ai_purple">#2563EB</color>
+    <color name="ai_purple_light">#C4B5FD</color>
+    <color name="ai_purple_dark">#1E40AF</color>
+
+    <!-- 🟢 SUCCESS -->
+    <color name="success_green">#16A34A</color>
+    <color name="success_green_dark">#166534</color>
+    <color name="success_light">#D1FAE5</color>
+
+    <!-- 🟡 WARNING -->
+    <color name="warning_yellow">#FACC15</color>  <!-- 🌟 main yellow -->
+    <color name="warning_yellow_dark">#CA8A04</color>
+    <color name="warning_light">#FEF9C3</color>
+
+    <!-- 🔴 ERROR -->
+    <color name="error_red">#DC2626</color>
+    <color name="error_dark">#991B1B</color>
+    <color name="error_light">#FEE2E2</color>
+
+    <!-- 🟠 ACCENT / GOLD -->
+    <color name="gold">#FBBF24</color>
+    <!-- 🥈 SILVER -->
+    <color name="silver">#C0C0C0</color> <!-- Classic silver -->
+    <color name="silver_light">#D6D6D6</color>
+    <color name="silver_dark">#A9A9A9</color>
+
+    <!-- 🥉 BRONZE -->
+    <color name="bronze">#CD7F32</color> <!-- Authentic bronze tone -->
+    <color name="bronze_light">#E0A96D</color>
+    <color name="bronze_dark">#8C5319</color>
+
     <color name="blue_600">#2563EB</color>
     <color name="blue_800">#1E40AF</color>
     <color name="purple_500">#A855F7</color>
